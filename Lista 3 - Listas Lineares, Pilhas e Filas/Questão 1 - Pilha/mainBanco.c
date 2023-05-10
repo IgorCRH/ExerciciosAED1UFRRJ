@@ -93,7 +93,7 @@ int main() {
             break;
     }
 
-} while (opcao != 0);
+} while (opcao != 6);
 
 free(pilhaClientes.dados);
 
