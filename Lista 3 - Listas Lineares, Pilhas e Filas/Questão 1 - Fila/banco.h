@@ -157,3 +157,18 @@ void imprimirFila(Fila *fila) {
     }
 }
 
+void ordenarFilaPorNome(Fila* fila) { // Ordena os nomes por odem alfabética
+    int i, j;
+    TCliente temp;
+
+    for (i = fila->inicio; i <= fila->fim; i++) { // Percorre a fila do início ao fim
+        for (j = i + 1; j <= fila->fim; j++) { // Inicia a partir da posição seguinte à posição atual de i (i + 1) até o fim da fila
+            if (strcmp(fila->dados[i].nome, fila->dados[j].nome) > 0) { // Compara as strings, se for maior que zero, i é maior (vem antes) que j alfabeticamente, sendo necessário trocar.
+                // Troca dos clientes nas posições i e j
+                temp = fila->dados[i];
+                fila->dados[i] = fila->dados[j];
+                fila->dados[j] = temp;
+            }
+        }
+    }
+}

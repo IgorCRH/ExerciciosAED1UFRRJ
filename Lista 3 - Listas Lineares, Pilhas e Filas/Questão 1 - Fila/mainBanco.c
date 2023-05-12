@@ -19,8 +19,9 @@ int main() {
         printf("2. Fazer retirada de uma determinada quantia de um cliente\n");
         printf("3. Inserir um novo cliente\n");
         printf("4. Retirar um cliente\n");
-        printf("5. Imprimir clientes\n");
-        printf("6. Sair\n");
+        printf("5. Ordenar clientes por ordem alfabetica\n");
+        printf("6. Imprimir clientes\n");
+        printf("7. Sair\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -81,9 +82,13 @@ scanf("%f", &novoCliente.saldo);
             }
             break;
         case 5:
-            imprimirFila(&filaClientes);
+            printf("Lista ordenada: \n");
+            ordenarFilaPorNome(&filaClientes);
             break;
         case 6:
+            imprimirFila(&filaClientes);
+            break;
+        case 7:
             printf("Saindo...\n");
             break;
         default:
@@ -91,7 +96,7 @@ scanf("%f", &novoCliente.saldo);
             break;
     }
 
-} while (opcao != 6);
+} while (opcao != 7);
 
 free(filaClientes.dados);
 
