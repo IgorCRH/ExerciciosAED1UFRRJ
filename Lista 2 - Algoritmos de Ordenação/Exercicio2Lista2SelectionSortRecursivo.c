@@ -1,24 +1,22 @@
 #include <stdio.h>
-
-// Implementação do algoritmo ShellSort
 #include <stdio.h>
 
-void selectionSort(int array[], int narraysize, int i) { // Recebe como parâmetro o vetor, seu tamanho, e o 'i' com posição do primeiro elemento
+void selectionSort(int array[], int narraysize, int i) { // Recebe como parÃ¢metro o vetor, seu tamanho, e o 'i' com posiÃ§Ã£o do primeiro elemento
     if (i == narraysize - 1) {
         return;
     }
 
-    int firstnonorderedelement = i; // Variável firstnonorderedelement é inicializada com o índice do primeiro elemento não ordenado
-    for (int j = i + 1; j < narraysize; j++) { // Loop continuará enquanto o j (posição do próximo, ou posição do atual (i) +1) for menor que o tamanho do vetor
-        if (array[j] < array[firstnonorderedelement]) { // Se o primeiro elemento for maior que o próximo
-            firstnonorderedelement = j; // O primeiro guardará o valor do próximo
+    int firstnonorderedelement = i; // VariÃ¡vel firstnonorderedelement Ã© inicializada com o Ã­ndice do primeiro elemento nÃ£o ordenado
+    for (int j = i + 1; j < narraysize; j++) { // Loop continuarÃ¡ enquanto o j (posiÃ§Ã£o do prÃ³ximo, ou posiÃ§Ã£o do atual (i) +1) for menor que o tamanho do vetor
+        if (array[j] < array[firstnonorderedelement]) { // Se o primeiro elemento for maior que o prÃ³ximo
+            firstnonorderedelement = j; // O primeiro guardarÃ¡ o valor do prÃ³ximo
         }
     }
 
-    if (firstnonorderedelement != i) { // Se o elemento não está na posição do índice atual, ou a troca não será feita na primeira posição
-        int temp = array[i]; // O anterior, ou atual, será guardado em temp
-        array[i] = array[firstnonorderedelement]; // O anterior, ou atual, receberá o menor, ou o próximo valor não ordenado
-        array[firstnonorderedelement] = temp; // O próximo valor não ordenado receberá o que foi alocado, o valor anterior, ou atual de antes
+    if (firstnonorderedelement != i) { // Se o elemento nÃ£o estÃ¡ na posiÃ§Ã£o do Ã­ndice atual, ou a troca nÃ£o serÃ¡ feita na primeira posiÃ§Ã£o
+        int temp = array[i]; // O anterior, ou atual, serÃ¡ guardado em temp
+        array[i] = array[firstnonorderedelement]; // O anterior, ou atual, receberÃ¡ o menor, ou o prÃ³ximo valor nÃ£o ordenado
+        array[firstnonorderedelement] = temp; // O prÃ³ximo valor nÃ£o ordenado receberÃ¡ o que foi alocado, o valor anterior, ou atual de antes
     }
 
     selectionSort(array, narraysize, i + 1);
@@ -29,7 +27,7 @@ int main() {
     printf("Digite o tamanho do vetor: ");
     scanf("%d", &narraysize);
 
-    int array[narraysize]; // Declara o vetor com o índice do tamanho, aonde o usuário preenche o vetor
+    int array[narraysize]; // Declara o vetor com o Ã­ndice do tamanho, aonde o usuÃ¡rio preenche o vetor
     printf("Digite os elementos do vetor: ");
     for (int i = 0; i < narraysize; i++) {
         scanf("%d", &array[i]);
