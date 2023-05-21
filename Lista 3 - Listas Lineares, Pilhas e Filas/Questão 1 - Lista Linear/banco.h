@@ -58,7 +58,7 @@ int removerCliente(Lista *lista, int cpf) { // Remove cliente do sistema
 
 int sacarLista(Lista *lista, int cpf, float valor) { // Função de saque
     int posicao = buscarLista(lista, cpf); // Posicao chama a função buscar CPF na lista (sistema)
-    if (posicao == -1) { // Se buscar lista encontrar o CPF, retornará -1, então:
+    if (posicao == -1) { // Se buscar lista não encontrar o CPF, retornará -1, então:
         return 0; // cliente não encontrado
     }
     if (lista->dados[posicao].saldo < valor) { // Se for encontrado, e o saldo for menor que a quantia:
