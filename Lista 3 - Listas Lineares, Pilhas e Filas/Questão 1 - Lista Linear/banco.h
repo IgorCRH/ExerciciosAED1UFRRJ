@@ -36,7 +36,7 @@ int inserirCliente(Lista *lista, TCliente cliente) { // Cadastra cliente no sist
     if (lista->ultimo == lista->capacidade - 1) { // Se a lista estiver cheia, não é mais possível cadastrar, caso tenhamos capacidade fixa. Capacidade-1 pois os índices dos elementos da lista começam em 0.
         return 0;
     }
-    if (buscarLista(lista, cliente.cpf) != -1) { // Caso o cliente já tenha sido cadastrado
+    if (buscarLista(lista, cliente.cpf) != -1) { // Caso o cliente não tenha sido cadastrado
         return -1;
     }
     lista->ultimo++;
