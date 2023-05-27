@@ -19,7 +19,8 @@ int main() {
         printf("3. Inserir um novo cliente\n");
         printf("4. Retirar um cliente\n");
         printf("5. Listar clientes\n");
-        printf("6. Sair\n");
+        printf("5. Inserir cliente dado uma posicao na lista\n");
+        printf("7. Sair\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -83,6 +84,34 @@ int main() {
                 imprimirLista(&listaClientes);
                 break;
             case 6:
+                printf("Digite o CPF do novo cliente: ");
+        scanf("%d", &novoCliente.cpf);
+        printf("Digite o nome do novo cliente: ");
+        scanf("%s", novoCliente.nome);
+        printf("Digite o endereco do novo cliente: ");
+        scanf("%s", novoCliente.endereco);
+        fflush(stdin);
+        printf("Digite o telefone do novo cliente: ");
+        scanf("%s", novoCliente.tel);
+        fflush(stdin);
+        printf("Digite o saldo do novo cliente: ");
+        scanf("%f", &novoCliente.saldo);
+        int posicao;
+        printf("Digite a posicao de insercao: ");
+        scanf("%d", &posicao);
+
+        int InsercaoMeio = inserirClienteMeio(&listaClientes, novoCliente, posicao);
+        if (InsercaoMeio == 0) {
+            printf("Erro ao inserir cliente.\n");
+        } else if (InsercaoMeio == -1) {
+            printf("Cliente já cadastrado.\n");
+        } else if (InsercaoMeio == -2) {
+            printf("Posicao invalida.\n");
+        } else {
+            printf("Cliente inserido com sucesso.\n");
+        }
+                break;
+            case 7:
                 printf("Saindo...\n");
                 break;
             default:
