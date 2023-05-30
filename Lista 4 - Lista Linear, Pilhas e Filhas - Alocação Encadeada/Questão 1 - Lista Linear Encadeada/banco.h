@@ -133,6 +133,42 @@ int inserirClienteMeio(ListaEncadeada* lista, TCliente cliente, int posicao) {
     return 1; // Cliente inserido com sucesso
 }
 
+int inserirClienteTermodoMeio(ListaEncadeada* lista, TCliente cliente) {
+    if (buscarLista(lista, cliente.cpf) != -1) {
+        return -1; // Cliente já cadastrado
+    }
+
+    int posicao = (lista->tamanho / 2) + 1; // Calcula a posição do meio da lista
+
+    No* novoNo = (No*)malloc(sizeof(No));
+    if (novoNo == NULL) {
+        return 0; // Falha na alocação de memória
+    }
+
+    novoNo->cliente = cliente;
+
+    if (posicao == 1) {
+        novoNo->proximo = lista->primeiro;
+        lista->primeiro = novoNo;
+    } else {
+        No* atual = lista->primeiro;
+        int indice = 1;
+
+        while (indice < posicao - 1) {
+            atual = atual->proximo;
+            indice++;
+        }
+
+        novoNo->proximo = atual->proximo;
+        atual->proximo = novoNo;
+    }
+
+    lista->tamanho++;
+
+    return 1; // Cliente inserido com sucesso
+}
+
+
 int sacarLista(ListaEncadeada* lista, int cpf, float valor) {
     No* atual = lista->primeiro; // Inicializa o nó atual com o primeiro elemento da lista
 

@@ -19,8 +19,10 @@ int main() {
         printf("3. Inserir um novo cliente\n");
         printf("4. Retirar um cliente\n");
         printf("5. Listar clientes\n");
-        printf("5. Inserir cliente dado uma posicao na lista\n");
-        printf("7. Sair\n");
+        printf("6. Inserir cliente dado uma posicao na lista\n");
+        printf("7. Inserir cliente no meio da lista\n");
+        printf("8. Imprimir lista de cliente\n");
+        printf("9. Sair\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -84,7 +86,7 @@ int main() {
                 imprimirLista(&listaClientes);
                 break;
             case 6:
-                printf("Digite o CPF do novo cliente: ");
+        printf("Digite o CPF do novo cliente: ");
         scanf("%d", &novoCliente.cpf);
         printf("Digite o nome do novo cliente: ");
         scanf("%s", novoCliente.nome);
@@ -112,13 +114,38 @@ int main() {
         }
                 break;
             case 7:
+                printf("Digite o CPF do novo cliente: ");
+        scanf("%d", &novoCliente.cpf);
+        printf("Digite o nome do novo cliente: ");
+        scanf("%s", novoCliente.nome);
+        printf("Digite o endereco do novo cliente: ");
+        scanf("%s", novoCliente.endereco);
+        fflush(stdin);
+        printf("Digite o telefone do novo cliente: ");
+        scanf("%s", novoCliente.tel);
+        fflush(stdin);
+        printf("Digite o saldo do novo cliente: ");
+        scanf("%f", &novoCliente.saldo);
+        int InsercaoTermodoMeio = inserirClienteTermodoMeio(&listaClientes, novoCliente);
+                if (InsercaoTermodoMeio == 0) {
+            printf("Erro ao inserir cliente.\n");
+        } else if (InsercaoTermodoMeio == -1) {
+            printf("Cliente já cadastrado.\n");
+        }  else {
+            printf("Cliente inserido com sucesso.\n");
+        }
+                break;
+            case 8:
+                imprimirLista(&listaClientes);
+                break;
+            case 9:
                 printf("Saindo...\n");
                 break;
             default:
                 printf("Opcao invalida.\n");
                 break;
         }
-    } while (opcao != 6);
+    } while (opcao != 8);
 
     // Liberar memória dos nós da lista
     No* atual = listaClientes.primeiro;
