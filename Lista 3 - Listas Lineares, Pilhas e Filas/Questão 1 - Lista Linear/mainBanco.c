@@ -20,9 +20,10 @@ int main() {
         printf("3. Inserir um novo cliente\n");
         printf("4. Inserir cliente em uma posicao na lista\n");
         printf("5. Inserir cliente no meio da lista\n");
-        printf("6. Retirar um cliente\n");
-        printf("7. Imprimir Lista\n");
-        printf("8. Sair\n");
+        printf("6. Inserir cliente no final da lista\n");
+        printf("7. Retirar um cliente\n");
+        printf("8. Imprimir Lista\n");
+        printf("9. Sair\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -163,8 +164,40 @@ printf("Lista Cheia.\n");
         printf("Cliente inserido com sucesso.\n");
     }
     break;
+            case 6:
+                printf("Digite o CPF do novo cliente: ");
+    scanf("%d", &novoCliente.cpf);
+    printf("Digite o nome do novo cliente: ");
+    scanf("%s", novoCliente.nome);
+    printf("Digite o endereco do novo cliente: ");
+    scanf("%s", novoCliente.endereco);
+    fflush(stdin);
+    printf("Digite o telefone do novo cliente: ");
+    scanf("%s", novoCliente.tel);
+    fflush(stdin);
+    printf("Digite o saldo do novo cliente: ");
+    scanf("%f", &novoCliente.saldo);
+
+    if (listaClientes.capacidade == listaClientes.capacidade) {
+        int novaCapacidade = listaClientes.capacidade * 2; // Dobra a capacidade da lista
+        TCliente* novoArrayClientes = (TCliente*) realloc(listaClientes.dados, novaCapacidade * sizeof(TCliente)); // Muda dinamicamente a capacidade
+        if (novoArrayClientes != NULL) {
+            listaClientes.dados = novoArrayClientes; // Incorpora a nova capacidade à struct Lista
+            listaClientes.capacidade = novaCapacidade;
+        } else {
+            printf("Erro ao realocar memoria.\n");
+            exit(1);
+        }
+    }
+
+    int resultadoInsercaoInicio = inserirClienteInicio(&listaClientes, novoCliente); // Chama a função inserirClienteInicio passando a lista e o novo cliente
+    if (resultadoInsercaoInicio == -1) { // inserirClienteInicio retorna -1 se o cliente já estiver cadastrado
+        printf("Cliente ja cadastrado.\n");
+    } else { // Cliente inserido com sucesso
+        printf("Cliente inserido com sucesso.\n");
+    }
                 break;
-case 6:
+case 7:
     printf("Digite o CPF do cliente a ser removido: ");
     scanf("%d", &cpf);
     int resultadoRemocao = removerCliente(&listaClientes, cpf); // Dentro da lista, lê o CPF e passa por argumento para a chamada da função de busca do CPF dentro da função removerCliente
@@ -183,10 +216,10 @@ case 6:
         }
     }
     break;
-case 7:
+case 8:
     imprimirLista(&listaClientes);
     break;
-case 8:
+case 9:
                 printf("Saindo...\n");
                 break;
             default:

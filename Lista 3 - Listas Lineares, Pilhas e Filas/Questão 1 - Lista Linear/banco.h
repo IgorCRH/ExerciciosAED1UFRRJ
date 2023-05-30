@@ -47,6 +47,25 @@ int inserirCliente(Lista* lista, TCliente cliente) {
     return 1; // Cliente inserido com sucesso
 }
 
+int inserirClienteInicio(Lista* lista, TCliente cliente) {
+    if (lista->ultimo == lista->capacidade - 1) {
+        return 0; // Lista cheia
+    }
+
+    if (buscarLista(lista, cliente.cpf) != -1) {
+        return -1; // Cliente já cadastrado
+    }
+
+    for (int i = lista->ultimo; i >= 0; i--) {
+        lista->dados[i + 1] = lista->dados[i];
+    }
+
+    lista->dados[0] = cliente;
+    lista->ultimo++;
+
+    return 1; // Cliente inserido com sucesso
+}
+
 int inserirClienteMeio(Lista* lista, TCliente cliente, int posicao) {
     if (buscarLista(lista, cliente.cpf) != -1) {
         return -1; // Cliente já cadastrado
