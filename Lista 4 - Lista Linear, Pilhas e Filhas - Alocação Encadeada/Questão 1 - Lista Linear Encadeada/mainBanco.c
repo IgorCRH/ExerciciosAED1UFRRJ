@@ -21,8 +21,9 @@ int main() {
         printf("5. Listar clientes\n");
         printf("6. Inserir cliente dado uma posicao na lista\n");
         printf("7. Inserir cliente no meio da lista\n");
-        printf("8. Imprimir lista de cliente\n");
-        printf("9. Sair\n");
+        printf("8. Inserir cliente no final da lista\n");
+        printf("9. Imprimir lista de cliente\n");
+        printf("10. Sair\n");
         scanf("%d", &opcao);
 
         switch (opcao) {
@@ -136,16 +137,31 @@ int main() {
         }
                 break;
             case 8:
-                imprimirLista(&listaClientes);
+                printf("Digite o CPF do novo cliente: ");
+    scanf("%d", &novoCliente.cpf);
+    printf("Digite o nome do novo cliente: ");
+    scanf("%s", novoCliente.nome);
+    printf("Digite o endereco do novo cliente: ");
+    scanf("%s", novoCliente.endereco);
+    fflush(stdin);
+    printf("Digite o telefone do novo cliente: ");
+    scanf("%s", novoCliente.tel);
+    fflush(stdin);
+    printf("Digite o saldo do novo cliente: ");
+    scanf("%f", &novoCliente.saldo);
+inserirClienteFinal(&listaClientes, novoCliente);
                 break;
             case 9:
+                imprimirLista(&listaClientes);
+                break;
+            case 10:
                 printf("Saindo...\n");
                 break;
             default:
                 printf("Opcao invalida.\n");
                 break;
         }
-    } while (opcao != 8);
+    } while (opcao != 10);
 
     // Liberar memória dos nós da lista
     No* atual = listaClientes.primeiro;

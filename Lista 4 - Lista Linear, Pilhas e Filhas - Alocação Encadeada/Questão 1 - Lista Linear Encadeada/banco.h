@@ -73,6 +73,37 @@ int inserirCliente(ListaEncadeada* lista, TCliente cliente) { // Insere novo cli
     return 1; // Cliente cadastrado com sucesso
 }
 
+int inserirClienteFinal(ListaEncadeada* lista, TCliente cliente) {
+    if (buscarLista(lista, cliente.cpf) != -1) {
+        printf("Cliente já cadastrado.\n");
+        return -1;
+    }
+
+    No* novoNo = (No*)malloc(sizeof(No));
+    if (novoNo == NULL) {
+        printf("Falha na alocação de memória.\n");
+        return 0;
+    }
+
+    novoNo->cliente = cliente;
+    novoNo->proximo = NULL;
+
+    if (lista->primeiro == NULL) {
+        lista->primeiro = novoNo;
+    } else {
+        No* atual = lista->primeiro;
+        while (atual->proximo != NULL) {
+            atual = atual->proximo;
+        }
+        atual->proximo = novoNo;
+    }
+
+    lista->tamanho++;
+
+    printf("Cliente inserido no final da lista.\n");
+}
+
+
 int removerCliente(ListaEncadeada* lista, int cpf) {
     No* atual = lista->primeiro; // Ponteiro atual é inicializado com o primeiro nó da lista
     No* anterior = NULL;
