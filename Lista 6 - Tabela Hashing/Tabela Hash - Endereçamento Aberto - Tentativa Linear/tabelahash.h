@@ -105,4 +105,31 @@ void imprimirTabelaHash(TabelaHash* tabela) {
     printf("-----------------------\n");
 }
 
+
+void trocarPosicaoElementos(TabelaHash* tabela, int chave1, int chave2) {
+    int indice1 = -1, indice2 = -1;
+
+    for (int i = 0; i < tabela->tamanho; i++) {
+        if (tabela->elementos[i].chave == chave1) {
+            indice1 = i;
+        } else if (tabela->elementos[i].chave == chave2) {
+            indice2 = i;
+        }
+
+        if (indice1 != -1 && indice2 != -1) {
+            break;
+        }
+    }
+
+    if (indice1 == -1 || indice2 == -1) {
+        printf("Elemento(s) nao encontrado(s).\n");
+        return;
+    }
+
+    Elemento temp = tabela->elementos[indice1];
+    tabela->elementos[indice1] = tabela->elementos[indice2];
+    tabela->elementos[indice2] = temp;
+
+    printf("Troca de posicao realizada com sucesso!\n");
+}
 #endif

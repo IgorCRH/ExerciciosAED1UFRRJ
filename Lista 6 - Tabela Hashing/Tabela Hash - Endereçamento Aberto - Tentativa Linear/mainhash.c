@@ -8,7 +8,7 @@ int main() {
     TabelaHash* tabela = criarTabelaHash(tamanhoTabela);
 
     int opcao = 0;
-    int chave, valor;
+    int chave, chave1, chave2, valor;
 
     while (opcao != 5) {
         printf("\n----- Menu -----\n");
@@ -17,7 +17,8 @@ int main() {
         printf("3. Buscar elemento\n");
         printf("4. Procurar maior e menor valor\n");
         printf("5. Imprimir\n");
-        printf("6. Sair\n");
+        printf("6. Trocar dois elementos de posição\n");
+        printf("7. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -54,6 +55,13 @@ int main() {
                 imprimirTabelaHash(tabela);
                 break;
             case 6:
+                    printf("Digite a chave do primeiro elemento: ");
+                    scanf("%d", &chave1);
+                    printf("Digite a chave do segundo elemento: ");
+                    scanf("%d", &chave2);
+                    trocarPosicaoElementos(tabela, chave1, chave2);
+                break;
+            case 7:
                 printf("Encerrando o programa.\n");
                 break;
             default:
