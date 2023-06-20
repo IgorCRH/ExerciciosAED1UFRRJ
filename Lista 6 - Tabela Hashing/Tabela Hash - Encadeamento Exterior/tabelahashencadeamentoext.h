@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TAMANHO_TABELA 10
-
 typedef struct Elemento {
     int chave;
     int valor;
@@ -13,17 +11,19 @@ typedef struct Elemento {
 } Elemento;
 
 typedef struct TabelaHash {
+    int tamanho;
     Elemento** tabela;
 } TabelaHash;
 
-TabelaHash* criarTabelaHash() {
+TabelaHash* criarTabelaHash(int tamanho) {
     TabelaHash* tabela = (TabelaHash*)malloc(sizeof(TabelaHash));
-    tabela->tabela = (Elemento**)calloc(TAMANHO_TABELA, sizeof(Elemento*));
+    tabela->tamanho = tamanho;
+    tabela->tabela = (Elemento**)calloc(tamanho, sizeof(Elemento*));
     return tabela;
 }
 
-int funcaoHash(int chave) {
-    return chave % TAMANHO_TABELA;
+int funcaoHash(int chave, int tamanho) {
+    return chave % tamanho;
 }
 
 void inserir(TabelaHash* tabela, int chave, int valor) {
@@ -32,7 +32,7 @@ void inserir(TabelaHash* tabela, int chave, int valor) {
     novoElemento->valor = valor;
     novoElemento->proximo = NULL;
 
-    int indice = funcaoHash(chave);
+    int indice = funcaoHash(chave, tabela->tamanho);
 
     if (tabela->tabela[indice] == NULL) {
         tabela->tabela[indice] = novoElemento;
@@ -46,7 +46,7 @@ void inserir(TabelaHash* tabela, int chave, int valor) {
 }
 
 void remover(TabelaHash* tabela, int chave) {
-    int indice = funcaoHash(chave);
+    int indice = funcaoHash(chave, tabela->tamanho);
 
     Elemento* elementoAtual = tabela->tabela[indice];
     Elemento* elementoAnterior = NULL;
@@ -67,7 +67,7 @@ void remover(TabelaHash* tabela, int chave) {
 }
 
 int buscar(TabelaHash* tabela, int chave) {
-    int indice = funcaoHash(chave);
+    int indice = funcaoHash(chave, tabela->tamanho);
 
     Elemento* elementoAtual = tabela->tabela[indice];
 
@@ -84,7 +84,7 @@ int buscar(TabelaHash* tabela, int chave) {
 int procurarMaior(TabelaHash* tabela) {
     int maiorValor = INT_MIN;
 
-    for (int i = 0; i < TAMANHO_TABELA; i++) {
+    for (int i = 0; i < tabela->tamanho; i++) {
         Elemento* elementoAtual = tabela->tabela[i];
 
         while (elementoAtual != NULL) {
@@ -101,22 +101,22 @@ int procurarMaior(TabelaHash* tabela) {
 int procurarMenor(TabelaHash* tabela) {
     int menorValor = INT_MAX;
 
-    for (int i = 0; i < TAMANHO_TABELA; i++) {
+    for (int i = 0; i < tabela->tamanho; i++) {
         Elemento* elementoAtual = tabela->tabela[i];
 
         while (elementoAtual != NULL) {
             if (elementoAtual->valor < menorValor) {
-                menorValor = elementoAtual->valor;
-}
-elementoAtual = elementoAtual->proximo;
-}
+            menorValor = elementoAtual->valor;
+            }
+        elementoAtual = elementoAtual->proximo;
+                                      }
 }
 return menorValor;
 }
 
 void trocarPosicaoElementos(TabelaHash* tabela, int chave1, int chave2) {
-int indice1 = funcaoHash(chave1);
-int indice2 = funcaoHash(chave2);
+int indice1 = funcaoHash(chave1, tabela->tamanho);
+int indice2 = funcaoHash(chave2, tabela->tamanho);
 Elemento* elemento1 = tabela->tabela[indice1];
 Elemento* elemento2 = tabela->tabela[indice2];
 Elemento* elementoAnterior1 = NULL;
@@ -156,7 +156,7 @@ elemento2->proximo = temp;
 
 void imprimirTabelaHash(TabelaHash* tabela) {
 printf("\n----- Tabela Hash -----\n");
-for (int i = 0; i < TAMANHO_TABELA; i++) {
+for (int i = 0; i < tabela->tamanho; i++) {
 printf("Indice %d: ", i);
 Elemento* elementoAtual = tabela->tabela[i];
 while (elementoAtual != NULL) {
