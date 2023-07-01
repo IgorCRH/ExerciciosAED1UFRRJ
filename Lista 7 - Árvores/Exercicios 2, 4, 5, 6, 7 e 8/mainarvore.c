@@ -17,7 +17,11 @@ int main() {
         printf("7. Encontrar o irmao do no\n");
         printf("8. Calcular a altura da árvore\n");
         printf("9. Imprimir a árvore em ordem\n");
-        printf("10. Sair\n");
+        printf("10. Contar numero de nos da arvore\n");
+        printf("11. Imprimir em Pre-Ordem\n");
+        printf("12. Imprimir em Pos-Ordem\n");
+        printf("13. Imprimir em Ordem Simetrica\n");
+        printf("14. Sair\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
 
@@ -83,13 +87,32 @@ int main() {
                 printf("\n");
                 break;
             case 10:
+                printf("Número de nos na árvore: %d\n", contarNos(raiz));
+                contarNos(raiz);
+                break;
+            case 11:
+                printf("Imprimindo a árvore em pre-ordem: ");
+                pre_ordem(raiz);
+                printf("\n");
+                break;
+            case 12:
+                printf("Imprimindo a árvore em pos-ordem: ");
+                pos_ordem(raiz);
+                printf("\n");
+                break;
+            case 13:
+                printf("Imprimindo a árvore em ordem simetrica: ");
+                sim_ordem(raiz);
+                printf("\n");
+                break;
+            case 14:
                 printf("Saindo do programa.\n");
                 break;
             default:
                 printf("Opção inválida.\n");
                 break;
         }
-    } while (opcao != 10);
+    } while (opcao != 14);
 
     return 0;
 }
