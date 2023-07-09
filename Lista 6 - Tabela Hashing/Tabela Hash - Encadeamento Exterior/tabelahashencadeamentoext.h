@@ -168,4 +168,16 @@ printf("\n");
 printf("-----------------------\n");
 }
 
+int contarEspacosVazios(TabelaHash* tabela) {
+    int contador = 0;
+
+    for (int i = 0; i < tabela->tamanho; i++) {
+        if (tabela->tabela[i] == NULL) {
+            contador++;
+        }
+    }
+
+    return contador;
+}
+
 #endif

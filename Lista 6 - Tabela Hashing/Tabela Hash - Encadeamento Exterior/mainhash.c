@@ -10,7 +10,7 @@ int main() {
     int opcao = 0;
     int chave, chave1, chave2, valor;
 
-    while (opcao != 5) {
+    while (opcao != 8) {
         printf("\n----- Menu -----\n");
         printf("1. Inserir elemento\n");
         printf("2. Remover elemento\n");
@@ -18,7 +18,8 @@ int main() {
         printf("4. Procurar maior e menor valor\n");
         printf("5. Imprimir\n");
         printf("6. Trocar dois elementos de posição\n");
-        printf("7. Sair\n");
+        printf("7. Contar Espacos Vazios\n");
+        printf("8. Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -62,6 +63,9 @@ int main() {
                     trocarPosicaoElementos(tabela, chave1, chave2);
                 break;
             case 7:
+                printf("Espacos vazios: %d\n", contarEspacosVazios(tabela));
+                break;
+            case 8:
                 printf("Encerrando o programa.\n");
                 break;
             default:
