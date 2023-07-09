@@ -132,4 +132,16 @@ void trocarPosicaoElementos(TabelaHash* tabela, int chave1, int chave2) {
 
     printf("Troca de posicao realizada com sucesso!\n");
 }
+
+int contarEspacosVazios(TabelaHash* tabela) {
+    int contador = 0;
+
+    for (int i = 0; i < tabela->tamanho; i++) {
+        if (tabela->elementos[i].chave == -1) {
+            contador++;
+        }
+    }
+
+    return contador;
+}
 #endif
